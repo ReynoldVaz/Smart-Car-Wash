@@ -14,6 +14,7 @@ import {
   TouchableHighlight,
   SafeAreaView,
   StatusBar,
+  ScrollView,
 } from 'react-native'
 import BackButton from '../components/BackButton'
 import React, { useState } from 'react'
@@ -77,16 +78,36 @@ const NotificationsScreen = ({ navigation }) => {
 }
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Centre 1',
+    id: '1',
+    title: 'Sparkle And Shine ',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Centre 2',
+    id: '2',
+    title: 'Sai Car Washing Centre',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Centre 3',
+    id: '3',
+    title: "Sunny's Washing Centre",
+  },
+  {
+    id: '4',
+    title: "Sunny's Washing Centre",
+  },
+  {
+    id: '5',
+    title: "Sunny's Washing Centre",
+  },
+  {
+    id: '5',
+    title: "Sunny's Washing Centre",
+  },
+  {
+    id: '5',
+    title: "Sunny's Washing Centre",
+  },
+  {
+    id: '5',
+    title: "Sunny's Washing Centre",
   },
 ]
 
@@ -123,56 +144,58 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <View>
-      <View style={styles.container1}>
-        <NavigationContainer independent={true}>
-          <MyDrawer />
-        </NavigationContainer>
-        <Headline
-          style={{
-            textAlignVertical: 'center',
-            textAlign: 'center',
-            fontSize: 30,
-            paddingTop: 30,
-          }}
-        >
-          Smart Car Was
-        </Headline>
-        <View style={styles.container2}>
-          <Button
-            style={[{ width: '50%' }]}
-            mode="contained"
-            onPress={() => navigation.navigate('AreaScreen')}
-          >
-            Area
-          </Button>
+    <ScrollView style={styles.container1}>
+      <NavigationContainer independent={true}>
+        <MyDrawer />
+      </NavigationContainer>
+      <Headline
+        style={{
+          textAlignVertical: 'center',
+          textAlign: 'center',
+          fontSize: 30,
+          paddingTop: 30,
+        }}
+      >
+        Smart Car Wash
+      </Headline>
 
-          <Button
-            style={[{ width: '50%' }]}
-            //style={[{ align: 'centre' }]}
-            mode="contained"
-            onPress={() => navigation.navigate('CarTypeScreen')}
-          >
-            Car Type
-          </Button>
-          <Button
-            style={[{ width: '50%' }]}
-            mode="contained"
-            onPress={() => navigation.navigate('HomeScreenTrial')}
-          >
-            Drawer
-          </Button>
-        </View>
-        <View style={styles.container3}>
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            extraData={selectedId}
-          />
-        </View>
-      </View>
-    </View>
+      <Button
+        style={[{ width: '50%', marginHorizontal: 90 }]}
+        mode="contained"
+        onPress={() => navigation.navigate('AreaScreen')}
+      >
+        Area
+      </Button>
+
+      <Button
+        style={[{ width: '50%', marginHorizontal: 90 }]}
+        //style={[{ align: 'centre' }]}
+        mode="contained"
+        onPress={() => navigation.navigate('CarTypeScreen')}
+      >
+        Car Type
+      </Button>
+      <Button
+        style={[{ width: '50%', marginHorizontal: 90 }]}
+        mode="contained"
+        onPress={() => navigation.navigate('HomeScreenTrial')}
+      >
+        Drawer
+      </Button>
+
+      <FlatList
+        style={{
+          // textAlignVertical: 'center',
+          // textAlign: 'center',
+          fontSize: 30,
+          // paddingTop: 30,
+        }}
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        extraData={selectedId}
+      />
+    </ScrollView>
   )
 }
 
@@ -184,7 +207,7 @@ const styles = StyleSheet.create({
     //paddingTop: 45,
     paddingTop: 30,
     paddingLeft: 20,
-    alignItems: 'center',
+    alignContent: 'center',
   },
   container2: {
     //flex: 1,
@@ -202,17 +225,17 @@ const styles = StyleSheet.create({
     //marginTop: StatusBar.currentHeight || 0,
 
     //paddingTop: 45,
-    paddingTop: 20,
+    paddingTop: 5,
 
-    alignItems: 'center',
+    //alignItems: 'center',
   },
 
   item: {
-    paddingHorizontal: 130,
-    alignItems: 'center',
-    paddingVertical: 30,
+    paddingHorizontal: 10,
+    //alignItems: 'center',
+    paddingVertical: 20,
     marginVertical: 4,
-    marginHorizontal: 16,
+    marginHorizontal: 2,
   },
   title: {
     fontSize: 15,
