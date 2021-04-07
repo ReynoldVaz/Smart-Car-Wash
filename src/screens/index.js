@@ -8,3 +8,8 @@ export { default as HomeScreen } from './HomeScreen'
 export { default as HomeScreenTrial } from './HomeScreenTrial'
 export { default as CarCentreScreen } from './CarCentreScreen'
 export { default as Dashboard } from './Dashboard'
+
+export {default as Privacy} from "./PrivacyScreen";
+export {default as Profile} from "./ProfileScreen";
+export {default as Help} from "./HelpScreen";
+export {default as SignOut} from "./SignOutScreen";
