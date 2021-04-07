@@ -98,15 +98,15 @@ const DATA = [
     title: "Sunny's Washing Centre",
   },
   {
-    id: '5',
+    id: '6',
     title: "Sunny's Washing Centre",
   },
   {
-    id: '5',
+    id: '7',
     title: "Sunny's Washing Centre",
   },
   {
-    id: '5',
+    id: '8',
     title: "Sunny's Washing Centre",
   },
 ]
@@ -117,9 +117,46 @@ const Item = ({ item, onPress, style }) => (
   </TouchableOpacity>
 )
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ route, navigation }) => {
   const [active, setActive] = React.useState('')
   const [selectedId, setSelectedId] = useState(null)
+
+  const [area, setSelectedArea] = useState(null)
+  const [carType, setSelectedCarType] = useState(null)
+
+  try {
+    if (typeof route === 'object' && route !== null) {
+      if ('selectedArea' in route.params) {
+        // alert(route.params.selectedArea.title);
+        if (route.params.selectedArea != null) {
+          if (area == null) {
+            setSelectedArea(route.params.selectedArea)
+          } else {
+            if (area.id != route.params.selectedArea.id) {
+              setSelectedArea(route.params.selectedArea)
+            }
+          }
+        }
+      }
+    }
+
+    if (route.params.selectedCarType != null) {
+      if ('selectedCarType' in route.params) {
+        // alert(route.params.selectedCarType.title);
+
+        if (carType == null) {
+          setSelectedCarType(route.params.selectedCarType)
+        } else {
+          if (carType.id != route.params.selectedCarType.id) {
+            setSelectedCarType(route.params.selectedCarType)
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.error(err)
+    // alert(err);
+  }
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? 'lightgray' : 'white'
@@ -132,62 +169,78 @@ const HomeScreen = ({ navigation }) => {
       />
     )
   }
-  const Drawer = createDrawerNavigator()
-
-  function MyDrawer() {
-    return (
-      <Drawer.Navigator>
-        <Drawer.Screen name="Feed" component={AreaScreen} />
-        <Drawer.Screen name="Article" component={CarTypeScreen} />
-      </Drawer.Navigator>
-    )
-  }
 
   return (
     <ScrollView style={styles.container1}>
-      <NavigationContainer independent={true}>
-        <MyDrawer />
-      </NavigationContainer>
-      <Headline
-        style={{
-          textAlignVertical: 'center',
-          textAlign: 'center',
-          fontSize: 30,
-          paddingTop: 30,
-        }}
-      >
-        Smart Car Wash
-      </Headline>
+      {area == null ? (
+        <Button
+          style={[{ width: '50%', marginHorizontal: 90 }]}
+          mode="contained"
+          onPress={() => navigation.navigate('AreaScreen')}
+        >
+          Area
+        </Button>
+      ) : (
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
 
-      <Button
-        style={[{ width: '50%', marginHorizontal: 90 }]}
-        mode="contained"
-        onPress={() => navigation.navigate('AreaScreen')}
-      >
-        Area
-      </Button>
+            // marginVertical: 10,
+          }}
+        >
+          <Button
+            style={[{ width: '50%', marginHorizontal: 90 }]}
+            mode="contained"
+            onPress={() => {
+              route.params.selectedArea = null
+              setSelectedArea(null)
+            }}
+          >
+            {area.title} {'       '} x
+          </Button>
+        </View>
+      )}
 
-      <Button
-        style={[{ width: '50%', marginHorizontal: 90 }]}
-        //style={[{ align: 'centre' }]}
-        mode="contained"
-        onPress={() => navigation.navigate('CarTypeScreen')}
-      >
-        Car Type
-      </Button>
-      <Button
-        style={[{ width: '50%', marginHorizontal: 90 }]}
-        mode="contained"
-        onPress={() => navigation.navigate('HomeScreenTrial')}
-      >
-        Drawer
-      </Button>
+      {carType == null ? (
+        <Button
+          style={[{ width: '50%', marginHorizontal: 90 }]}
+          //style={[{ align: 'centre' }]}
+          mode="contained"
+          onPress={() => navigation.navigate('CarTypeScreen')}
+        >
+          Car Type
+        </Button>
+      ) : (
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            // marginVertical: 10,
+          }}
+        >
+          <Button
+            style={[{ width: '50%', marginHorizontal: 90 }]}
+            mode="contained"
+            onPress={() => {
+              route.params.selectedCarType = null
+              setSelectedCarType(null)
+            }}
+          >
+            {carType.title}
+            {'        '} x
+          </Button>
+        </View>
+      )}
 
       <FlatList
         style={{
           // textAlignVertical: 'center',
           // textAlign: 'center',
           fontSize: 30,
+          marginRight: 15,
           // paddingTop: 30,
         }}
         data={DATA}
@@ -210,21 +263,11 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   container2: {
-    //flex: 1,
-    //marginTop: StatusBar.currentHeight || 0,
-
-    //paddingTop: 30,
-    //paddingLeft: 20,
     alignItems: 'center',
-    //flexDirection: 'row',
     paddingTop: 20,
     padding: 10,
   },
   container3: {
-    //flex: 1,
-    //marginTop: StatusBar.currentHeight || 0,
-
-    //paddingTop: 45,
     paddingTop: 5,
 
     //alignItems: 'center',
