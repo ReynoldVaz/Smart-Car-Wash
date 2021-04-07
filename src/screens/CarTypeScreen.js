@@ -69,7 +69,12 @@ const CarTypeScreen = ({ navigation }) => {
     return (
       <Item
         item={item}
-        onPress={() => navigation.navigate('HomeScreen')}
+        onPress={() =>
+          navigation.navigate('MyDrawer', {
+            screen: 'Home',
+            params: { selectedCarType: item },
+          })
+        }
         style={{ backgroundColor }}
       />
     )
@@ -80,7 +85,7 @@ const CarTypeScreen = ({ navigation }) => {
       <View style={styles.container1}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => navigation.navigate('MyDrawer')}
         >
           <Text
             style={{
