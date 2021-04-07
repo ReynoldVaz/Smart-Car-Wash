@@ -11,36 +11,10 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TouchableHighlight,
-  SafeAreaView,
-  StatusBar,
 } from 'react-native'
-import BackButton from '../components/BackButton'
+
 import React, { useState } from 'react'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
 
-{
-  /*const AreaScreen = ({ navigation }) => (
-  <Background>
-    {/*<Logo />
-    <Text>Select Area</Text>
-    <Paragraph>You starts here.</Paragraph>
-    <Button
-      mode="outlined"
-      onPress={() =>
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'StartScreen' }],
-        })
-      }
-    >
-      back
-    </Button>
-  </Background>
-)
-
-    export default AreaScreen*/
-}
 const DATA = [
   {
     id: '1',
@@ -99,7 +73,12 @@ const AreaScreen = ({ navigation }) => {
     return (
       <Item
         item={item}
-        onPress={() => navigation.navigate('HomeScreen')}
+        onPress={() =>
+          navigation.navigate('MyDrawer', {
+            screen: 'Home',
+            params: { selectedArea: item },
+          })
+        }
         style={{ backgroundColor }}
       />
     )
@@ -110,7 +89,7 @@ const AreaScreen = ({ navigation }) => {
       <View style={styles.container1}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => navigation.navigate('MyDrawer')}
         >
           <Text
             style={{
@@ -144,13 +123,9 @@ const AreaScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
-    //marginTop: StatusBar.currentHeight || 0,
     paddingTop: 30,
   },
   container1: {
-    //flex: 1,
-    //marginTop: StatusBar.currentHeight || 0,
     paddingTop: 45,
   },
 
