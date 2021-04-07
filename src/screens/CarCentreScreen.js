@@ -1,9 +1,9 @@
 //import React from 'react'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Header from '../components/Header'
-import Paragraph from '../components/Paragraph'
-import Button from '../components/Button'
+import Background from "../components/Background";
+import Logo from "../components/Logo";
+import Header from "../components/Header";
+import Paragraph from "../components/Paragraph";
+import Button from "../components/Button";
 import {
   FlatList,
   StyleSheet,
@@ -13,16 +13,16 @@ import {
   TouchableHighlight,
   SafeAreaView,
   StatusBar,
-} from 'react-native'
-import BackButton from '../components/BackButton'
-import React, { useState } from 'react'
+} from "react-native";
+import BackButton from "../components/BackButton";
+import React, {useState} from "react";
 import {
   Checkbox,
   Colors,
   TouchableRipple,
   List,
   useTheme,
-} from 'react-native-paper'
+} from "react-native-paper";
 
 {
   /*const AreaScreen = ({ navigation }) => (
@@ -48,62 +48,59 @@ import {
 }
 const DATA = [
   {
-    id: '1',
-    title: 'Street address',
+    id: "1",
+    title: "Street address",
   },
-]
+];
 
-const Item = ({ item, onPress, style }) => (
+const Item = ({item, onPress, style}) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
     <Text style={styles.title}>{item.title}</Text>
   </TouchableOpacity>
-)
+);
 
-const CarCentreScreen = ({ navigation }) => {
-  const [checkedNormal, setCheckedNormal] = React.useState(true)
-  const [checkedCustom1, setCheckedCustom1] = React.useState(false)
-  const [checkedCustom2, setCheckedCustom2] = React.useState(false)
-  const [checkedCustom3, setCheckedCustom3] = React.useState(false)
-  const [indeterminate, setIndeterminate] = React.useState(true)
+const CarCentreScreen = ({navigation}) => {
+  const [checkedNormal, setCheckedNormal] = React.useState(true);
+  const [checkedCustom1, setCheckedCustom1] = React.useState(false);
+  const [checkedCustom2, setCheckedCustom2] = React.useState(false);
+  const [checkedCustom3, setCheckedCustom3] = React.useState(false);
+  const [indeterminate, setIndeterminate] = React.useState(true);
   const {
-    colors: { background },
-  } = useTheme()
-  const [selectedId, setSelectedId] = useState(null)
+    colors: {background},
+  } = useTheme();
+  const [selectedId, setSelectedId] = useState(null);
 
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? 'lightgray' : 'white'
+  const renderItem = ({item}) => {
+    const backgroundColor = item.id === selectedId ? "lightgray" : "white";
 
     return (
       <Item
         item={item}
-        onPress={() => navigation.navigate('HomeScreen')}
-        style={{ backgroundColor }}
+        onPress={() => navigation.navigate("MyDrawer")}
+        style={{backgroundColor}}
       />
-    )
-  }
+    );
+  };
 
   return (
     <View>
       <View style={styles.container1}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('HomeScreen')}
-        >
+          onPress={() => navigation.navigate("MyDrawer")}>
           <Text
             style={{
               fontSize: 20,
-            }}
-          >
-            {'X'}
+            }}>
+            {"X"}
           </Text>
         </TouchableOpacity>
         <Text
           style={{
-            textAlignVertical: 'center',
-            textAlign: 'center',
+            textAlignVertical: "center",
+            textAlign: "center",
             fontSize: 20,
-          }}
-        >
+          }}>
           Centre Name
         </Text>
       </View>
@@ -118,15 +115,14 @@ const CarCentreScreen = ({ navigation }) => {
       <Button
         style={[
           {
-            width: '50%',
+            width: "50%",
 
             marginVertical: 20,
             marginHorizontal: 100,
           },
         ]}
         mode="contained"
-        onPress={() => navigation.navigate('CarCentreScreen')}
-      >
+        onPress={() => navigation.navigate("CarCentreScreen")}>
         Time slot
       </Button>
       <View
@@ -135,8 +131,7 @@ const CarCentreScreen = ({ navigation }) => {
           {
             backgroundColor: background,
           },
-        ]}
-      >
+        ]}>
         <List.Section title="Services"></List.Section>
         <TouchableRipple onPress={() => setCheckedCustom1(!checkedCustom1)}>
           <View style={styles.row}>
@@ -144,7 +139,7 @@ const CarCentreScreen = ({ navigation }) => {
             <View pointerEvents="none">
               <Checkbox
                 color={Colors.blue500}
-                status={checkedCustom1 ? 'checked' : 'unchecked'}
+                status={checkedCustom1 ? "checked" : "unchecked"}
               />
             </View>
           </View>
@@ -155,7 +150,7 @@ const CarCentreScreen = ({ navigation }) => {
             <View pointerEvents="none">
               <Checkbox
                 color={Colors.blue500}
-                status={checkedCustom2 ? 'checked' : 'unchecked'}
+                status={checkedCustom2 ? "checked" : "unchecked"}
               />
             </View>
           </View>
@@ -166,7 +161,7 @@ const CarCentreScreen = ({ navigation }) => {
             <View pointerEvents="none">
               <Checkbox
                 color={Colors.blue500}
-                status={checkedCustom3 ? 'checked' : 'unchecked'}
+                status={checkedCustom3 ? "checked" : "unchecked"}
               />
             </View>
           </View>
@@ -201,8 +196,8 @@ const CarCentreScreen = ({ navigation }) => {
       </View>*/}
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -222,7 +217,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginVertical: 4,
     marginHorizontal: 16,
-    alignItems: 'center',
+    alignItems: "center",
   },
   title: {
     fontSize: 15,
@@ -241,12 +236,12 @@ const styles = StyleSheet.create({
   },
 
   row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingVertical: 8,
     paddingHorizontal: 16,
   },
-})
+});
 
-export default CarCentreScreen
+export default CarCentreScreen;
